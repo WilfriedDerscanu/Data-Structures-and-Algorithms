@@ -15,15 +15,8 @@ int main()
 	//////////////////////////Test Scope////////////////////////////////
 	{
 		List<int> lst;
-		lst.push_back(2);
-		lst.push_back(5);
-		lst.push_back(6);
-		{
-			List<int> l2 = std::move(lst);
-			
-			std::cout << l2 << " ";
-		}
-		std::cout << lst << " " << std::endl;
+	
+		std::cout << lst.front();
 	}
 	//////////////////////////////////////////////////////////////////
 	_CrtDumpMemoryLeaks();

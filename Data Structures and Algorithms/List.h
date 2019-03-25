@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <stdexcept> 
 
 template<typename DT>
 class List
@@ -227,16 +226,12 @@ inline void List<DT>::insert(DT data, uint64_t pos)
 template<typename DT>
 inline DT List<DT>::front() const
 {
-	if (isEmpty())
-		throw std::out_of_range("no element in the list");
 	return pVect[0];
 }
 
 template<typename DT>
 inline DT List<DT>::back() const
 {
-	if (isEmpty())
-		throw std::out_of_range("no element in the list");
 	return pVect[size - 1];
 }
 #pragma endregion
