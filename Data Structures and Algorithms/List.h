@@ -32,7 +32,12 @@ private:
 	bool isFull() const;
 	void Resize();
 private:
-	friend std::ostream& operator<<(std::ostream& out, const List<DT>& lst);
+	friend std::ostream& operator<<(std::ostream& out, const List<DT>& lst)
+	{
+		for (uint64_t i = 0; i < lst.size; i++)
+			out << lst[i] << ((i == lst.size - 1) ? "" : " ");
+		return out;
+	}
 private:
 	static constexpr uint8_t Start_size = 10;
 	static constexpr uint8_t Increment = 5;
@@ -166,9 +171,14 @@ inline bool List<DT>::isFull() const
 template<typename DT>
 inline void List<DT>::Resize()
 {
-}
-
-template<typename DT>
-inline std::ostream& operator<<(std::ostream& out, const List<DT>& lst)
-{
+	capacity += incr;
+	incr += Increment;
+	T *p = new T[capacity];
+	for (uint64_t i = 0; i < size; i++)
+	{
+		p[i] = pVect[i];
+	}
+	delete[] pVect;
+	pVect = p;
+	p = nullptr;
 }

@@ -2,6 +2,7 @@
 #include <stdlib.h>  
 #include <crtdbg.h>  
 #include <iostream>
+#include "List.h"
 
 int main()
 {
@@ -13,7 +14,8 @@ int main()
 	_CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
 	//////////////////////////Test Scope////////////////////////////////
 	{
-
+		List<int> lst;
+		std::cout << lst;
 
 	}
 	//////////////////////////////////////////////////////////////////
