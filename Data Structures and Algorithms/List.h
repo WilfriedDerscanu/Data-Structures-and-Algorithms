@@ -122,12 +122,17 @@ inline List<DT> & List<DT>::operator=(const List<DT> & model)
 template<typename DT>
 inline List<DT> & List<DT>::operator=(List<DT> && donor)
 {
-	*this = donor;
+	capacity = model.capacity;
+	size = model.size;
+	incr = model.incr;
+	if (pVect != nullptr)
+		delete[] pVect;
+	pVect = donor.pVect;
+	donor.pVect = nullptr;
 	donor.capacity = 0;
 	donor.incr = 0;
 	donor.size = 0;
-	delete[] donor.pVect;
-	donor.pVect = nullptr;
+
 	return *this;
 }
 
