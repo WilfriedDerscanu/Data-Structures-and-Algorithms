@@ -2,7 +2,7 @@
 #include <stdlib.h>  
 #include <crtdbg.h>  
 #include <iostream>
-#include "List.h"
+#include "LList.h"
 
 int main()
 {
@@ -14,9 +14,14 @@ int main()
 	_CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
 	//////////////////////////Test Scope////////////////////////////////
 	{
-		List<int> lst;
-	
-		std::cout << lst.front();
+		LList<int> lst;
+		lst.PushFirst(5);
+		lst.PushFirst(10);
+		lst.PushLast(5);
+		while (!lst.isEmpty())
+		{
+			std::cout << lst.PopLast() << " ";
+		}
 	}
 	//////////////////////////////////////////////////////////////////
 	_CrtDumpMemoryLeaks();
