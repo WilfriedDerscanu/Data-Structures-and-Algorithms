@@ -20,10 +20,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LList.h">
+    <ClInclude Include="List.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="List.hpp">
+    <ClInclude Include="LList.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
