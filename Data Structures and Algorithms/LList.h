@@ -52,36 +52,38 @@ public:
 
 	T PopLast()
 	{
-		Node* index = first;
 		if (isEmpty())
-			throw(std::exception());
+			throw(std::exception("Out of bounds"));
+		
+		Node* index = first;
+		T data;
+
+		if (index->next != nullptr)
+		{
+			while (index->next->next != nullptr)
+			{
+				index = index->next;
+			}
+			data = index->next->data;
+			last = index;
+			delete index->next;
+			index->next = nullptr;
+			return data;
+		}
 		else
 		{
-			if (index->next != nullptr)
-			{
-				while (index->next->next != nullptr)
-				{
-					index = index->next;
-				}
-				T data = index->next->data;
-				last = index;
-				delete index->next;
-				index->next = nullptr;
-				return data;
-			}
-			else
-			{
-				T data = last->data;
-				delete last;
-				last = first = nullptr;
-				return data;
-			}
+			data = last->data;
+			delete last;
+			last = first = nullptr;
+			return data;
 		}
 			
 	}
 
 	T PopFirst()
 	{
+		if (isEmpty())
+			throw(std::exception("Out of bounds"));
 		Node* temp = first;
 		first = first->next;
 		temp->next = nullptr;
