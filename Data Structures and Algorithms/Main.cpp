@@ -2,7 +2,7 @@
 #include <stdlib.h>  
 #include <crtdbg.h>  
 #include <iostream>
-#include "LList.hpp"
+#include "Queue.hpp"
 
 int main()
 {
@@ -14,14 +14,14 @@ int main()
 	_CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
 	//////////////////////////Test Scope////////////////////////////////
 	{
-		LList<int> lst;
-		lst.PushFirst(5);
-		lst.PushFirst(10);
-		lst.PushLast(5);
-		while (!lst.isEmpty())
-		{
-			std::cout << lst.PopLast() << " ";
-		}
+		Queue<int> q;
+		q.Enque(1);
+		q.Enque(2);
+		q.Enque(3);
+		q.Enque(5);
+		while (!q.isEmpty())
+			std::cout << q.Deque() << " ";
+
 	}
 	//////////////////////////////////////////////////////////////////
 	_CrtDumpMemoryLeaks();

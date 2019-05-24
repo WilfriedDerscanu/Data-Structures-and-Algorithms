@@ -120,6 +120,7 @@
   <ItemGroup>
     <ClInclude Include="List.hpp" />
     <ClInclude Include="LList.hpp" />
+    <ClInclude Include="Queue.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
