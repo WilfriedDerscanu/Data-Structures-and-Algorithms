@@ -2,7 +2,7 @@
 #include <stdlib.h>  
 #include <crtdbg.h>  
 #include <iostream>
-#include "Queue.hpp"
+#include "Stack.hpp"
 
 int main()
 {
@@ -14,13 +14,13 @@ int main()
 	_CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
 	//////////////////////////Test Scope////////////////////////////////
 	{
-		Queue<int> q;
-		q.Enque(1);
-		q.Enque(2);
-		q.Enque(3);
-		q.Enque(5);
+		Stack<int> q;
+		q.Push(1);
+		q.Push(2);
+		q.Push(3);
+		q.Push(5);
 		while (!q.isEmpty())
-			std::cout << q.Deque() << " ";
+			std::cout << q.Pop() << " ";
 
 	}
 	//////////////////////////////////////////////////////////////////
