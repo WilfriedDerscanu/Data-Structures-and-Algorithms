@@ -84,27 +84,27 @@ private:
 
 #pragma region alloc and dealloc stuff
 template<typename DT>
-inline List<DT>::List()
+List<DT>::List()
 	:
 	pVect(new DT[capacity])
 {
 }
 
 template<typename DT>
-inline List<DT>::List(const List & model)
+List<DT>::List(const List & model)
 {
 	*this = model;
 
 }
 
 template<typename DT>
-inline List<DT>::List(List && donor)
+List<DT>::List(List && donor)
 {
 	*this = std::move(donor);
 }
 
 template<typename DT>
-inline List<DT> & List<DT>::operator=(const List<DT> & model)
+List<DT> & List<DT>::operator=(const List<DT> & model)
 {
 	capacity = model.capacity;
 	size = model.size;
@@ -120,7 +120,7 @@ inline List<DT> & List<DT>::operator=(const List<DT> & model)
 }
 
 template<typename DT>
-inline List<DT> & List<DT>::operator=(List<DT> && donor)
+List<DT> & List<DT>::operator=(List<DT> && donor)
 {
 	capacity = model.capacity;
 	size = model.size;
@@ -137,7 +137,7 @@ inline List<DT> & List<DT>::operator=(List<DT> && donor)
 }
 
 template<typename DT>
-inline List<DT>::~List()
+List<DT>::~List()
 {
 	delete[] pVect;
 	pVect = nullptr;
@@ -146,19 +146,19 @@ inline List<DT>::~List()
 
 #pragma region Private Behaviour
 template<typename DT>
-inline bool List<DT>::isEmpty() const
+bool List<DT>::isEmpty() const
 {
 	return size == 0;
 }
 
 template<typename DT>
-inline bool List<DT>::isFull() const
+bool List<DT>::isFull() const
 {
 	return size == capacity;
 }
 
 template<typename DT>
-inline void List<DT>::Resize()
+void List<DT>::Resize()
 {
 	capacity += incr;
 	incr += Increment;
@@ -175,7 +175,7 @@ inline void List<DT>::Resize()
 
 #pragma region Behaviour
 template<typename DT>
-inline void List<DT>::push_back(DT data)
+void List<DT>::push_back(DT data)
 {
 	if (isFull())
 		Resize();
@@ -183,14 +183,14 @@ inline void List<DT>::push_back(DT data)
 }
 
 template<typename DT>
-inline void List<DT>::pop_back()
+void List<DT>::pop_back()
 {
 	if (!isEmpty())
 		size--;
 }
 
 template<typename DT>
-inline void List<DT>::add_front(DT data)
+void List<DT>::add_front(DT data)
 {
 	if (isFull())
 		Resize();
@@ -202,7 +202,7 @@ inline void List<DT>::add_front(DT data)
 }
 
 template<typename DT>
-inline void List<DT>::del_front()
+void List<DT>::del_front()
 {
 	for (uint64_t i = 0; i < size - 1; i++)
 		pVect[i] = pVect[i + 1];
@@ -210,7 +210,7 @@ inline void List<DT>::del_front()
 }
 
 template<typename DT>
-inline void List<DT>::erase(DT data, uint64_t pos)
+void List<DT>::erase(DT data, uint64_t pos)
 {
 	for (uint64_t i = pos; i < size - 1; i++)
 		pVect[i] = pVect[i + 1];
@@ -218,7 +218,7 @@ inline void List<DT>::erase(DT data, uint64_t pos)
 }
 
 template<typename DT>
-inline void List<DT>::insert(DT data, uint64_t pos)
+void List<DT>::insert(DT data, uint64_t pos)
 {
 	if (isFull())
 		Resize();
@@ -229,13 +229,13 @@ inline void List<DT>::insert(DT data, uint64_t pos)
 }
 
 template<typename DT>
-inline DT List<DT>::front() const
+DT List<DT>::front() const
 {
 	return pVect[0];
 }
 
 template<typename DT>
-inline DT List<DT>::back() const
+DT List<DT>::back() const
 {
 	return pVect[size - 1];
 }
@@ -243,13 +243,13 @@ inline DT List<DT>::back() const
 
 #pragma region Getters
 template<typename DT>
-inline uint64_t List<DT>::getSize() const
+uint64_t List<DT>::getSize() const
 {
 	return size;
 }
 
 template<typename DT>
-inline uint64_t List<DT>::getCapacity() const
+uint64_t List<DT>::getCapacity() const
 {
 	return capacity;
 }
@@ -257,13 +257,13 @@ inline uint64_t List<DT>::getCapacity() const
 
 #pragma region operators
 template<typename DT>
-inline DT & List<DT>::operator[](uint64_t index)
+DT & List<DT>::operator[](uint64_t index)
 {
 	return pVect[index];
 }
 
 template<typename DT>
-inline DT List<DT>::operator[](uint64_t index) const
+DT List<DT>::operator[](uint64_t index) const
 {
 	return pVect[index];
 }
@@ -271,39 +271,39 @@ inline DT List<DT>::operator[](uint64_t index) const
 
 #pragma region Iterators
 template<typename DT>
-inline typename List<DT>::Iterator List<DT>::begin()
+typename List<DT>::Iterator List<DT>::begin()
 {
 	return Iterator(pVect);
 }
 
 template<typename DT>
-inline typename List<DT>::Iterator List<DT>::end()
+typename List<DT>::Iterator List<DT>::end()
 {
 	return Iterator(pVect + size);
 }
 
 template<typename DT>
-inline typename List<DT>::ConstIterator List<DT>::begin() const
+typename List<DT>::ConstIterator List<DT>::begin() const
 {
 	return ConstIterator(pVect);
 }
 
 template<typename DT>
-inline typename List<DT>::ConstIterator List<DT>::end() const
+typename List<DT>::ConstIterator List<DT>::end() const
 {
 	return ConstIterator(pVect + size);
 }
 
 
 template<typename DT>
-inline List<DT>::Iterator::Iterator(DT * pData)
+List<DT>::Iterator::Iterator(DT * pData)
 	:
 	pData(pData)
 {
 }
 
 template<typename DT>
-inline typename List<DT>::Iterator List<DT>::Iterator::operator++()
+typename List<DT>::Iterator List<DT>::Iterator::operator++()
 {
 	Iterator item = *this;
 	pData++;
@@ -311,45 +311,45 @@ inline typename List<DT>::Iterator List<DT>::Iterator::operator++()
 }
 
 template<typename DT>
-inline typename List<DT>::Iterator List<DT>::Iterator::operator++(int junk)
+typename List<DT>::Iterator List<DT>::Iterator::operator++(int junk)
 {
 	pData++;
 	return *this;
 }
 
 template<typename DT>
-inline DT & List<DT>::Iterator::operator*()
+DT & List<DT>::Iterator::operator*()
 {
 	return *pData;
 }
 
 template<typename DT>
-inline DT* List<DT>::Iterator::operator->()
+DT* List<DT>::Iterator::operator->()
 {
 	return pData;
 }
 
 template<typename DT>
-inline bool List<DT>::Iterator::operator==(const Iterator & lhs) const
+bool List<DT>::Iterator::operator==(const Iterator & lhs) const
 {
 	return pData == lhs.pData;
 }
 
 template<typename DT>
-inline bool List<DT>::Iterator::operator!=(const Iterator & lhs) const
+bool List<DT>::Iterator::operator!=(const Iterator & lhs) const
 {
 	return pData != lhs.pData;
 }
 
 template<typename DT>
-inline List<DT>::ConstIterator::ConstIterator(DT * pData)
+List<DT>::ConstIterator::ConstIterator(DT * pData)
 	:
 	pData(pData)
 {
 }
 
 template<typename DT>
-inline typename List<DT>::ConstIterator List<DT>::ConstIterator::operator++()
+typename List<DT>::ConstIterator List<DT>::ConstIterator::operator++()
 {
 	ConstIterator item = *this;
 	pData++;
@@ -357,32 +357,32 @@ inline typename List<DT>::ConstIterator List<DT>::ConstIterator::operator++()
 }
 
 template<typename DT>
-inline typename List<DT>::ConstIterator List<DT>::ConstIterator::operator++(int junk)
+typename List<DT>::ConstIterator List<DT>::ConstIterator::operator++(int junk)
 {
 	pData++;
 	return *this;
 }
 
 template<typename DT>
-inline DT & List<DT>::ConstIterator::operator*() const
+DT & List<DT>::ConstIterator::operator*() const
 {
 	return *pData;
 }
 
 template<typename DT>
-inline DT* List<DT>::ConstIterator::operator->() const
+DT* List<DT>::ConstIterator::operator->() const
 {
 	return pData;
 }
 
 template<typename DT>
-inline bool List<DT>::ConstIterator::operator==(const ConstIterator & lhs) const
+bool List<DT>::ConstIterator::operator==(const ConstIterator & lhs) const
 {
 	return pData == lhs.pData;
 }
 
 template<typename DT>
-inline bool List<DT>::ConstIterator::operator!=(const ConstIterator & lhs) const
+bool List<DT>::ConstIterator::operator!=(const ConstIterator & lhs) const
 {
 	return pData != lhs.pData;
 }
